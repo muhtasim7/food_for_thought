@@ -26,7 +26,10 @@ class Settings(BaseSettings):
     supabase_jwt_y: Optional[str] = None
     
     # CORS (comma-separated in .env)
-    cors_origins: str = "http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000"
+    cors_origins: str = (
+        "http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000,"
+        "https://foodforthought-q3vjnauuq-muhtasim7s-projects.vercel.app"
+    )
     
     # App info
     app_name: str = "Food For Thought"
