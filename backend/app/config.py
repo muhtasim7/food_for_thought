@@ -30,6 +30,7 @@ class Settings(BaseSettings):
         "http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000,"
         "https://foodforthought-q3vjnauuq-muhtasim7s-projects.vercel.app"
     )
+    cors_origin_regex: Optional[str] = r"https://.*\.vercel\.app"
     
     # App info
     app_name: str = "Food For Thought"
@@ -42,8 +43,21 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins_list(self) -> List[str]:
-        """Parse comma-separated CORS origins from environment."""
-        return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+        """Parse comma-separated CORS origins from environment and merge safe defaults."""
+        configured_origins = [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+        default_origins = [
+            "http://localhost:3000",
+            "http://localhost:3001",
+            "http://127.0.0.1:3000",
+            "https://foodforthought-q3vjnauuq-muhtasim7s-projects.vercel.app",
+        ]
+
+        merged_origins: List[str] = []
+        for origin in [*configured_origins, *default_origins]:
+            if origin not in merged_origins:
+                merged_origins.append(origin)
+
+        return merged_origins
 
 
 settings = Settings()
