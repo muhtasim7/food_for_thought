@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0b0b;
+  --surface: #141414;
+  --text: #f4e7bf;
+  --muted: #c5b07a;
+  --gold: #d4af37;
+  --gold-soft: #f5d76e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(212, 175, 55, 0.2), transparent 38%),
+    radial-gradient(circle at 92% 22%, rgba(212, 175, 55, 0.16), transparent 34%),
+    var(--bg);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-playfair), Georgia, serif;
+  letter-spacing: 0.015em;
+}
+
+a {
+  transition: color 0.2s ease;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #fffbe9;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply rounded-xl shadow-md border border-amber-300/30;
+  background: linear-gradient(160deg, #1a1a1a 0%, #121212 100%);
+}
+
+.btn-primary {
+  @apply text-black px-4 py-2 rounded-lg transition font-semibold;
+  background: linear-gradient(135deg, #f5d76e 0%, #d4af37 58%, #b8891f 100%);
+}
+
+.btn-secondary {
+  @apply text-amber-100 px-4 py-2 rounded-lg border border-amber-300/40 transition font-semibold;
+  background: #191919;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
