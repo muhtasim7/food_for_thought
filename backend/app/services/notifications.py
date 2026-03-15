@@ -8,6 +8,9 @@ def send_booking_notification(chef_email: str, subject: str, body: str) -> bool:
 
     Returns True when send succeeds. If SMTP env vars are missing, returns False.
     """
+    if os.getenv("EMAIL_NOTIFICATIONS_ENABLED", "false").lower() != "true":
+        return False
+
     smtp_host = os.getenv("SMTP_HOST")
     smtp_port = int(os.getenv("SMTP_PORT", "587"))
     smtp_user = os.getenv("SMTP_USER")
