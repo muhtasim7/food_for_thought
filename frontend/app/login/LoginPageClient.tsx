@@ -1,17 +1,19 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import FormInput from '@/components/FormInput'
 import Button from '@/components/Button'
 import { authAPI } from '@/lib/api'
 
-export default function LoginPageClient() {
+interface LoginPageClientProps {
+  redirect?: string
+}
+
+export default function LoginPageClient({ redirect = '/' }: LoginPageClientProps) {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const redirect = searchParams.get('redirect') || '/'
 
   const [formData, setFormData] = useState({
     email: '',

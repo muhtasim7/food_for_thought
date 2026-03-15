@@ -1,13 +1,14 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import Button from '@/components/Button'
 
-export default function BookingConfirmationClient() {
-  const searchParams = useSearchParams()
-  const chefId = searchParams.get('chefId')
+interface BookingConfirmationClientProps {
+  chefId?: string
+}
+
+export default function BookingConfirmationClient({ chefId }: BookingConfirmationClientProps) {
 
   return (
     <Layout>

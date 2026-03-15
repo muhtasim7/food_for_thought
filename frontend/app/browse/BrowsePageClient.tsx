@@ -1,15 +1,17 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
 import Layout from '@/components/Layout'
 import ChefCard from '@/components/ChefCard'
 import FormInput from '@/components/FormInput'
 import { chefAPI } from '@/lib/api'
 import { Chef, CuisineTag, DietaryTag } from '@/types'
 
-export default function BrowsePageClient() {
-  const searchParams = useSearchParams()
+interface BrowsePageClientProps {
+  initialCity?: string
+}
+
+export default function BrowsePageClient({ initialCity = '' }: BrowsePageClientProps) {
   const [chefs, setChefs] = useState<Chef[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -17,7 +19,7 @@ export default function BrowsePageClient() {
   const [dietaryTags, setDietaryTags] = useState<DietaryTag[]>([])
 
   // Filter state
-  const [city, setCity] = useState(searchParams.get('city') || '')
+  const [city, setCity] = useState(initialCity)
   const [selectedCuisines, setSelectedCuisines] = useState<number[]>([])
   const [selectedDietary, setSelectedDietary] = useState<number[]>([])
 
