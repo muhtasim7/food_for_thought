@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Layout from '@/components/Layout'
 import ChefCard from '@/components/ChefCard'
@@ -8,7 +8,7 @@ import FormInput from '@/components/FormInput'
 import { chefAPI } from '@/lib/api'
 import { Chef, CuisineTag, DietaryTag } from '@/types'
 
-function BrowseChefsContent() {
+export default function BrowsePageClient() {
   const searchParams = useSearchParams()
   const [chefs, setChefs] = useState<Chef[]>([])
   const [loading, setLoading] = useState(true)
@@ -86,13 +86,11 @@ function BrowseChefsContent() {
           <h1 className="text-3xl font-bold text-gray-800 mb-8">Browse Local Chefs</h1>
 
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar Filters */}
             <div className="lg:w-64 flex-shrink-0">
               <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
                 <h2 className="text-lg font-bold mb-6 text-gray-800">Filters</h2>
 
                 <form onSubmit={handleSearch} className="space-y-6">
-                  {/* City Filter */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       City
@@ -105,7 +103,6 @@ function BrowseChefsContent() {
                     />
                   </div>
 
-                  {/* Cuisine Filter */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-3">
                       Cuisine
@@ -127,7 +124,6 @@ function BrowseChefsContent() {
                     </div>
                   </div>
 
-                  {/* Dietary Filter */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-3">
                       Dietary
@@ -157,7 +153,6 @@ function BrowseChefsContent() {
               </div>
             </div>
 
-            {/* Chef Grid */}
             <div className="flex-1">
               {loading ? (
                 <div className="flex justify-center items-center h-64">
@@ -195,13 +190,5 @@ function BrowseChefsContent() {
         </div>
       </div>
     </Layout>
-  )
-}
-
-export default function BrowseChefs() {
-  return (
-    <Suspense fallback={<Layout><div className="min-h-screen bg-gray-50" /></Layout>}>
-      <BrowseChefsContent />
-    </Suspense>
   )
 }
