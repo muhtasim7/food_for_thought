@@ -45,10 +45,10 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center gap-10">
             <div className="flex-1">
               <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-amber-200">
-                Party Food from Local Home Chefs
+                Catering from Local Home Chefs
               </h1>
               <p className="text-lg sm:text-xl mb-8 text-amber-100/80">
-                Discover authentic home-cooked catering for your celebrations. From Bengali biryani to Pakistani kebabs, find the perfect chef for your event.
+                Discover authentic home-cooked catering for your celebrations. Find the perfect chef for your event.
               </p>
 
               <form onSubmit={handleSearch} className="flex gap-2 mb-8">
