@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.107.0",
+    "@vercel/speed-insights": "^2.0.0",
     "autoprefixer": "^10.4.0",
     "axios": "^1.6.0",
     "date-fns": "^2.30.0",
