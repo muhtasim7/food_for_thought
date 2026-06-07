@@ -1,12 +1,6 @@
 import axios from 'axios'
 
-const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL ||
-  'https://food-for-thought-gfrv.onrender.com'
-).replace(/\/$/, '')
-
 export const apiClient = axios.create({
-  baseURL: API_URL,
   timeout: 12000,
   headers: {
     'Content-Type': 'application/json',

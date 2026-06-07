@@ -19,6 +19,7 @@ export default function ChefDetailPage() {
   const [loading, setLoading] = useState(true)
   const [showBookingForm, setShowBookingForm] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [bookingAcknowledged, setBookingAcknowledged] = useState(false)
   const [formData, setFormData] = useState<BookingFormData>({
     customerName: '',
     customerEmail: '',
@@ -171,7 +172,7 @@ export default function ChefDetailPage() {
                 <Button size="lg" onClick={() => setShowBookingForm(true)}>
                   Request Booking
                 </Button>
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" onClick={() => setShowBookingForm(true)}>
                   Message Chef
                 </Button>
               </div>
@@ -313,13 +314,27 @@ export default function ChefDetailPage() {
                 rows={5}
               />
 
+              <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={bookingAcknowledged}
+                    onChange={(e) => setBookingAcknowledged(e.target.checked)}
+                    className="mt-1 rounded border-gray-300"
+                  />
+                  <span className="text-sm text-gray-700 leading-6">
+                    I understand that Food for Thought is a platform that connects users with independent chefs. Food for Thought does not provide food services and is not responsible for food preparation, allergens, service quality, or any interactions with chefs. I agree to communicate all allergies and requirements directly with the chef.
+                  </span>
+                </label>
+              </div>
+
               <div className="flex gap-3 pt-4">
                 <Button
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || !bookingAcknowledged}
                   className="flex-1"
                 >
-                  {submitting ? 'Submitting...' : 'Submit Request'}
+                  {submitting ? 'Submitting...' : 'Contact Chef'}
                 </Button>
                 <Button
                   type="button"

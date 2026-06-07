@@ -14,6 +14,7 @@ export default function ChefSetup() {
   const [loading, setLoading] = useState(true)
   const [step, setStep] = useState(1)
   const [submitting, setSubmitting] = useState(false)
+  const [agreementAccepted, setAgreementAccepted] = useState(false)
   const [cuisines, setCuisines] = useState<any[]>([])
   const [dietaryTags, setDietaryTags] = useState<any[]>([])
 
@@ -126,6 +127,20 @@ export default function ChefSetup() {
                   value={formData.experienceYears}
                   onChange={(e) => setFormData({ ...formData, experienceYears: parseInt(e.target.value) })}
                 />
+
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={agreementAccepted}
+                      onChange={(e) => setAgreementAccepted(e.target.checked)}
+                      className="mt-1 rounded border-gray-300"
+                    />
+                    <span className="text-sm text-gray-700 leading-6">
+                      I agree that I am an independent service provider, that I am solely responsible for food preparation, allergen disclosure, service quality, and compliance with applicable laws, and that Food for Thought is only a platform. I have read and agree to the <a href="/terms" className="text-orange-600 font-semibold hover:underline">Terms of Service</a>.
+                    </span>
+                  </label>
+                </div>
               </>
             ) : (
               <>
@@ -198,7 +213,7 @@ export default function ChefSetup() {
               )}
               <Button
                 type="submit"
-                disabled={submitting}
+                disabled={submitting || (step === 2 && !agreementAccepted)}
                 className={step === 1 ? 'w-full' : 'flex-1'}
               >
                 {step === 1 ? 'Next' : submitting ? 'Creating...' : 'Complete Setup'}

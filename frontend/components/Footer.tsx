@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Footer() {
   return (
     <footer className="bg-black text-amber-100 border-t border-amber-300/20">
@@ -14,6 +16,7 @@ export default function Footer() {
               <li><a href="/browse" className="hover:text-amber-300">Browse Chefs</a></li>
               <li><a href="#" className="hover:text-amber-300">How It Works</a></li>
               <li><a href="#" className="hover:text-amber-300">FAQs</a></li>
+              <li><Link href="/terms" className="hover:text-amber-300">Terms of Service</Link></li>
             </ul>
           </div>
           
